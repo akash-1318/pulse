@@ -10,7 +10,16 @@ import { env } from "./config/env.js";
 
 export function createApp() {
   const app = express();
-  app.use(cors({ origin: env.clientUrl, credentials: true }));
+
+  app.use(
+    cors({
+      origin: env.clientUrl,
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    }),
+  );
+
   app.use(helmet({ crossOriginResourcePolicy: false }));
   app.use(morgan("dev"));
   app.use(express.json());
