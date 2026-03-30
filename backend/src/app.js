@@ -17,30 +17,44 @@ export function createApp() {
     "https://pulse-1-czde.onrender.com",
   ];
 
-  app.use(
-    cors({
-      origin: function (origin, callback) {
-        if (
-          !origin ||
-          allowedOrigins.includes(origin) ||
-          origin.endsWith(".vercel.app") ||
-          origin.endsWith(".onrender.com")
-        ) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      credentials: true,
-      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      optionsSuccessStatus: 200,
-      maxAge: 86400,
-    }),
-  );
+  const corsOptions = {
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
 
-  // Handle preflight requests
-  app.options("*", cors());
+      // Check exact matches
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      // Check domain patterns
+      if (
+        origin.includes("vercel.app") ||
+        origin.includes("onrender.com") ||
+        origin.includes("localhost")
+      ) {
+        callback(null, true);
+        return;
+      }
+
+      callback(null, true); // Allow all origins in production for now
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    exposedHeaders: ["Content-Range", "X-Content-Range"],
+    optionsSuccessStatus: 200,
+    maxAge: 86400,
+  };
+
+  app.use(cors(corsOptions));
+
+  // Handle preflight requests explicitly
+  app.options("*", cors(corsOptions));
 
   app.use(helmet({ crossOriginResourcePolicy: false }));
   app.use(morgan("dev"));
