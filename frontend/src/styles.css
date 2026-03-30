@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-dark-900 via-dark-900 to-dark-800 text-gray-100 antialiased;
+    background-image: 
+      radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 30%),
+      linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(30, 41, 59, 1));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-50;
+  }
+
+  input, textarea, select {
+    @apply bg-dark-900 text-gray-100 placeholder-gray-500 border border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+
+  textarea {
+    @apply resize-y;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2.5 rounded-lg font-medium border border-gray-700 bg-dark-800 text-gray-100 hover:border-primary-400 hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700 border-primary-700 text-white hover:from-primary-700 hover:to-primary-800 shadow-lg shadow-primary-500/20;
+  }
+
+  .btn-danger {
+    @apply border-red-900 text-red-300 hover:border-red-700 hover:bg-red-950/50;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-800 border-gray-700 text-gray-100 hover:bg-gray-700 hover:border-gray-600;
+  }
+
+  .card {
+    @apply bg-dark-800/50 border border-gray-700 rounded-2xl p-6 shadow-2xl backdrop-blur-xl hover:border-gray-600 transition-all duration-300;
+  }
+
+  .card-interactive {
+    @apply card hover:shadow-2xl hover:shadow-primary-500/10 hover:border-primary-600/30;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-success {
+    @apply bg-green-950/40 text-green-300 border border-green-900/50;
+  }
+
+  .badge-danger {
+    @apply bg-red-950/40 text-red-300 border border-red-900/50;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-950/40 text-yellow-300 border border-yellow-900/50;
+  }
+
+  .badge-default {
+    @apply bg-gray-800 text-gray-300 border border-gray-700;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+  }
+
+  .form-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600;
+  }
+
+  .subsection-title {
+    @apply text-xl md:text-2xl font-bold text-gray-50;
+  }
+
+  .text-muted {
+    @apply text-gray-400;
+  }
+
+  .text-subtle {
+    @apply text-gray-500;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-widest text-primary-400 font-semibold;
+  }
+
+  .progress-bar {
+    @apply w-full h-2.5 bg-dark-700 rounded-full overflow-hidden shadow-inner;
+  }
+
+  .progress-bar-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-green-500 via-primary-500 to-blue-500 shadow-lg;
+  }
+
+  .empty-state {
+    @apply flex flex-col items-center justify-center min-h-96 text-center gap-4;
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50;
+  }
+
+  .modal {
+    @apply card w-full max-w-4xl max-h-[90vh] overflow-auto;
+  }
+
+  .player {
+    @apply w-full rounded-xl shadow-2xl;
+  }
+
+  .table-container {
+    @apply overflow-x-auto;
+  }
+
+  .data-table {
+    @apply w-full border-collapse;
+  }
+
+  .data-table th {
+    @apply bg-dark-700 text-gray-100 px-6 py-4 text-left font-semibold border-b border-gray-700;
+  }
+
+  .data-table td {
+    @apply px-6 py-4 border-b border-gray-800 text-gray-300;
+  }
+
+  .data-table tbody tr {
+    @apply hover:bg-dark-700/50 transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-lg border border-white/5;
+  }
+}
