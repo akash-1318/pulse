@@ -10,7 +10,7 @@ const app = createApp();
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: env.clientUrl, credentials: true },
+  cors: { origin: "https://pulse-five-tan.vercel.app", credentials: true },
 });
 
 io.use((socket, next) => {
